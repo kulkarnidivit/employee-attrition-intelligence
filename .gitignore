@@ -1,0 +1,23 @@
+# Environment
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (do not commit raw data or large processed files)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Trained model artifacts (we'll decide how to handle these in Phase 8)
+models/*.pkl
+models/*.joblib
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
