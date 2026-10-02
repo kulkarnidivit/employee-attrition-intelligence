@@ -18,3 +18,11 @@ PROCESSED_DATA_PATH = Path(
         PROJECT_ROOT / "data" / "processed" / "hr_attrition_clean.csv",
     )
 )
+
+# Reproducible train/test split
+RANDOM_STATE = 42
+TEST_SIZE = 0.2
+
+PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+TRAIN_DATA_PATH = PROCESSED_DIR / "train.csv"
+TEST_DATA_PATH = PROCESSED_DIR / "test.csv"
