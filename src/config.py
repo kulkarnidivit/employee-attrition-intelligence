@@ -11,3 +11,10 @@ RAW_DATA_PATH = Path(
 )
 
 TARGET_COL = "Attrition"
+
+PROCESSED_DATA_PATH = Path(
+    os.getenv(
+        "ATTRITION_PROCESSED_DATA_PATH",
+        PROJECT_ROOT / "data" / "processed" / "hr_attrition_clean.csv",
+    )
+)

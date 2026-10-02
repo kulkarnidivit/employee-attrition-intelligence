@@ -71,3 +71,6 @@ ORDER_RULES = [
     ("YearsWithCurrManager", "YearsAtCompany"),
     ("YearsAtCompany", "TotalWorkingYears"),
 ]
+
+# Columns with a single value for every row; dropped during cleaning
+CONSTANT_COLUMNS = ["EmployeeCount", "Over18", "StandardHours"]
