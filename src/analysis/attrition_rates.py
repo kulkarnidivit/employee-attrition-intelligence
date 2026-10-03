@@ -45,3 +45,21 @@ def attrition_rate_table(
     table["attrition_rate"] = table["leavers"] / table["n"]
     table["ci_low"], table["ci_high"] = wilson_interval(table["leavers"], table["n"])
     return table
+
+
+def attrition_by_groups(
+    df: pd.DataFrame,
+    group_cols: list[str],
+    target_col: str = TARGET_COL,
+    positive_label: str = "Yes",
+) -> pd.DataFrame:
+    """Attrition rate (with 95% interval) for every combination of the given columns.
+
+    Columns: the group columns, then n, leavers, attrition_rate, ci_low, ci_high.
+    """
+    is_leaver = df[target_col] == positive_label
+    keys = [df[c] for c in group_cols]
+    table = is_leaver.groupby(keys, observed=True).agg(n="size", leavers="sum").reset_index()
+    table["attrition_rate"] = table["leavers"] / table["n"]
+    table["ci_low"], table["ci_high"] = wilson_interval(table["leavers"], table["n"])
+    return table
