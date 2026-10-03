@@ -74,3 +74,23 @@ ORDER_RULES = [
 
 # Columns with a single value for every row; dropped during cleaning
 CONSTANT_COLUMNS = ["EmployeeCount", "Over18", "StandardHours"]
+
+# Column groups after cleaning (30 feature columns). Reused by EDA and, later,
+# the preprocessing pipeline. EmployeeNumber (ID) and Attrition (target) are excluded.
+ORDINAL_COLUMNS = [
+    "Education", "EnvironmentSatisfaction", "JobInvolvement", "JobLevel",
+    "JobSatisfaction", "PerformanceRating", "RelationshipSatisfaction",
+    "StockOptionLevel", "WorkLifeBalance",
+]
+
+NUMERIC_COLUMNS = [
+    "Age", "DailyRate", "DistanceFromHome", "HourlyRate", "MonthlyIncome",
+    "MonthlyRate", "NumCompaniesWorked", "PercentSalaryHike", "TotalWorkingYears",
+    "TrainingTimesLastYear", "YearsAtCompany", "YearsInCurrentRole",
+    "YearsSinceLastPromotion", "YearsWithCurrManager",
+]
+
+CATEGORICAL_COLUMNS = [
+    "BusinessTravel", "Department", "EducationField", "Gender",
+    "JobRole", "MaritalStatus", "OverTime",
+]
