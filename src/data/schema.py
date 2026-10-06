@@ -94,3 +94,7 @@ CATEGORICAL_COLUMNS = [
     "BusinessTravel", "Department", "EducationField", "Gender",
     "JobRole", "MaritalStatus", "OverTime",
 ]
+
+# Sensitive attributes: excluded from model inputs by default (see docs/eda_findings.md).
+# Phase 8 measures the effect of including them.
+SENSITIVE_COLUMNS = ["Age", "Gender", "MaritalStatus"]
