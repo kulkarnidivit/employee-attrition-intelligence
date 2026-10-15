@@ -26,3 +26,18 @@
 ## D5. Metrics
 - Decision: optimize and report PR-AUC, recall, precision, F1 and ROC-AUC; never accuracy alone,
   because only about 16% of employees leave.
+
+## D6. Class imbalance
+- Decision: class weights for the baseline models (class_weight="balanced"; scale_pos_weight for XGBoost).
+- SMOTE is postponed to a controlled Phase 8 experiment, applied inside training folds only.
+
+## D7. Cross-validation and metrics
+- 5-fold stratified, repeated 3 times, fixed seed from config.
+- PR-AUC is the primary metric; ROC-AUC, precision, recall and F1 are secondary.
+- A dummy classifier ("knows nothing") is the floor every real model must beat.
+
+## D8. Preprocessing
+- One scikit-learn Pipeline: feature engineering -> one-hot encoding (unseen categories ignored) -> optional scaling -> model.
+- Rating columns stay numeric; scaling only for Logistic Regression; no log transforms for now.
+- EmployeeNumber and sensitive columns are dropped by default; switches exist for the Phase 8 experiments.
+- The test set is never used before the final evaluation.
