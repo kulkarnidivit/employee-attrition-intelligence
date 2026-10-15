@@ -36,3 +36,6 @@ BUSINESS_TRAVEL_LEVELS = {"Non-Travel": 0, "Travel_Rarely": 1, "Travel_Frequentl
 # Cross-validation plan (Phase 5)
 CV_N_SPLITS = 5
 CV_N_REPEATS = 3
+
+# Where model comparison results are saved
+REPORTS_DIR = PROJECT_ROOT / "reports"

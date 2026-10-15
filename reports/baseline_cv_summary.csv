@@ -1,0 +1,11 @@
+model,metric,mean,std
+dummy_nobody_leaves,pr_auc,0.16156509195816807,0.0002836908538226871
+dummy_nobody_leaves,roc_auc,0.5,0.0
+dummy_nobody_leaves,precision,0.0,0.0
+dummy_nobody_leaves,recall,0.0,0.0
+dummy_nobody_leaves,f1,0.0,0.0
+dummy_everybody_leaves,pr_auc,0.16156509195816807,0.0002836908538226871
+dummy_everybody_leaves,roc_auc,0.5,0.0
+dummy_everybody_leaves,precision,0.16156509195816807,0.0002836908538226871
+dummy_everybody_leaves,recall,1.0,0.0
+dummy_everybody_leaves,f1,0.2781850752653672,0.0004206704300153985
