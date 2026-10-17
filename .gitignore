@@ -22,3 +22,8 @@ models/*.joblib
 .vscode/
 .idea/
 *.egg-info/
+
+# keep the final model files so the API / Docker build can use them
+!models/attrition_model.joblib
+!models/explainer.joblib
+!models/model_metadata.json

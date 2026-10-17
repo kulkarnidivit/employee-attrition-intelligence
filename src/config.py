@@ -39,3 +39,14 @@ CV_N_REPEATS = 3
 
 # Where model comparison results are saved
 REPORTS_DIR = PROJECT_ROOT / "reports"
+
+# Final model files and risk settings
+MODELS_DIR = PROJECT_ROOT / "models"
+MODEL_PATH = MODELS_DIR / "attrition_model.joblib"
+EXPLAINER_PATH = MODELS_DIR / "explainer.joblib"
+METADATA_PATH = MODELS_DIR / "model_metadata.json"
+BEST_PARAMS_PATH = REPORTS_DIR / "best_params.json"
+TEST_RESULTS_PATH = REPORTS_DIR / "test_results.json"
+
+# Risk bands on CALIBRATED probabilities. Business rules, not scientific truths: change freely.
+RISK_BANDS = {"medium": 0.15, "high": 0.35}

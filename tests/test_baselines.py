@@ -21,3 +21,30 @@ def test_dummy_baselines_have_the_expected_floor_scores():
     assert everybody["recall"] == pytest.approx(1.0)
     assert everybody["precision"] == pytest.approx(0.25)
     assert everybody["f1"] == pytest.approx(0.4)  # 2 * 0.25 * 1 / (0.25 + 1)
+
+
+def test_registry_contains_dummies_and_three_real_models():
+    assert set(get_baseline_models()) == {
+        "dummy_nobody_leaves",
+        "dummy_everybody_leaves",
+        "logistic_regression",
+        "random_forest",
+        "xgboost",
+    }
+
+
+def test_real_baselines_use_class_weights():
+    models = get_baseline_models(scale_pos_weight=5.2)
+    assert models["logistic_regression"].named_steps["model"].class_weight == "balanced"
+    assert models["random_forest"].named_steps["model"].class_weight == "balanced"
+    assert models["xgboost"].named_steps["model"].scale_pos_weight == 5.2
+
+
+def test_real_baselines_fit_and_give_probabilities():
+    X, y = split_xy(make_dataset())
+    for name in ("logistic_regression", "random_forest", "xgboost"):
+        pipe = get_baseline_models()[name]
+        pipe.fit(X, y)
+        proba = pipe.predict_proba(X)
+        assert proba.shape == (len(X), 2)
+        assert ((proba >= 0) & (proba <= 1)).all()

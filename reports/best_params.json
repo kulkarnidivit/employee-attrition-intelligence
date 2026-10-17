@@ -1,0 +1,16 @@
+{
+  "logistic_regression": {
+    "C": 0.03,
+    "pr_auc_cv": 0.6369113552645788
+  },
+  "xgboost": {
+    "subsample": 0.7,
+    "reg_lambda": 1,
+    "n_estimators": 300,
+    "min_child_weight": 1,
+    "max_depth": 2,
+    "learning_rate": 0.1,
+    "colsample_bytree": 0.8,
+    "pr_auc_cv": 0.5857045183145348
+  }
+}

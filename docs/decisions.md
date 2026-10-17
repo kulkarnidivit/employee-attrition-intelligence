@@ -41,3 +41,11 @@
 - Rating columns stay numeric; scaling only for Logistic Regression; no log transforms for now.
 - EmployeeNumber and sensitive columns are dropped by default; switches exist for the Phase 8 experiments.
 - The test set is never used before the final evaluation.
+
+## D9. Cutoff and risk bands
+- Headline metrics use the cutoff that maximizes F1 on out-of-fold TRAINING predictions; it is applied
+  once to the locked test set and never tuned on it.
+- Product: configurable top-N% review lists and Low/Medium/High bands on calibrated probabilities
+  (business rules, not universal truths).
+- Reason: class-weighted models are over-confident, so probability values need calibration before
+  risk bands mean anything.

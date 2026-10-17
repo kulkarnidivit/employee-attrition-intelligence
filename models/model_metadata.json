@@ -1,0 +1,11 @@
+{
+  "model": "logistic_regression + sigmoid calibration",
+  "C": 0.03,
+  "threshold": 0.33,
+  "risk_bands": {
+    "medium": 0.15,
+    "high": 0.35
+  },
+  "trained_rows": 1176,
+  "sklearn_version": "1.9.1"
+}
