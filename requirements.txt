@@ -8,3 +8,6 @@ jupyter
 ipykernel
 pytest
 xgboost
+fastapi
+uvicorn
+httpx

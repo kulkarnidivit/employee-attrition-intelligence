@@ -85,3 +85,33 @@ class AttritionService:
             "note": "Model scenario only: this shows how the model's output changes, "
                     "not that changing these factors would change real outcomes.",
         }
+
+
+REVIEW_AREAS = {
+    "OverTime_Yes": "Workload and scheduling review",
+    "work_stress_score": "Workload and travel-load review",
+    "BusinessTravel_Travel_Frequently": "Travel-load review",
+    "junior_overtime": "Workload review for entry-level staff",
+    "is_first_year": "Onboarding and first-year support review",
+    "JobSatisfaction": "Engagement and manager conversation",
+    "EnvironmentSatisfaction": "Work environment review",
+    "WorkLifeBalance": "Work-life balance review",
+    "JobInvolvement": "Role fit and engagement review",
+    "StockOptionLevel": "Total rewards review",
+    "job_hopping": "Career path conversation",
+    "JobLevel": "Career progression review",
+}
+
+
+def review_areas(drivers: list[dict]) -> list[str]:
+    """HR areas worth a look, based on factors that RAISE this employee's model score.
+
+    Decision support only: these are prompts for a human conversation, not automatic decisions.
+    """
+    areas = []
+    for driver in drivers:
+        if driver["direction"] == "raises":
+            area = REVIEW_AREAS.get(driver["feature"])
+            if area and area not in areas:
+                areas.append(area)
+    return areas
