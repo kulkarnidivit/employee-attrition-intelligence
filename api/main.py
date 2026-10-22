@@ -5,6 +5,7 @@ Set API_KEY to require an X-API-Key header on everything except /health.
 Set ALLOWED_ORIGINS (comma separated) to the frontend address(es) that may call the API.
 """
 
+import json
 import logging
 import os
 from contextlib import asynccontextmanager
@@ -15,6 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 
 from api.schemas import EmployeeInput, ExplainResponse, PredictResponse, SimulateRequest, SimulateResponse
+from src.config import MODEL_CARD_PATH
 from src.serving.demo_data import DemoStore
 from src.serving.service import AttritionService, review_areas
 
@@ -144,6 +146,13 @@ def get_employee(employee_number: int):
     if result is None:
         raise HTTPException(status_code=404, detail="Employee not found")
     return result
+
+
+@secured.get("/model/info")
+def model_info():
+    if not MODEL_CARD_PATH.exists():
+        raise HTTPException(status_code=503, detail="Model card not built; run: python -m src.serving.make_model_card")
+    return json.loads(MODEL_CARD_PATH.read_text())
 
 
 app.include_router(secured)

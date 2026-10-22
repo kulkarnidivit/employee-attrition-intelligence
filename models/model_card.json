@@ -1,0 +1,98 @@
+{
+  "model": {
+    "name": "logistic_regression + sigmoid calibration",
+    "C": 0.03,
+    "cutoff": 0.33,
+    "risk_bands": {
+      "medium": 0.15,
+      "high": 0.35
+    },
+    "trained_rows": 1176
+  },
+  "test": {
+    "n_test": 294,
+    "leavers": 47,
+    "pr_auc": 0.6054075097596365,
+    "roc_auc": 0.8216900680506504,
+    "brier": 0.0945845444166225,
+    "threshold": 0.33,
+    "flagged": 45,
+    "caught": 28,
+    "precision": 0.6222222222222222,
+    "recall": 0.5957446808510638,
+    "f1": 0.6086956521739131,
+    "floor_pr_auc": 0.1598639455782313
+  },
+  "test_calibration": [
+    {
+      "predicted": 0.02175489027389714,
+      "actual": 0.02702702702702703,
+      "n": 74
+    },
+    {
+      "predicted": 0.062470552554932286,
+      "actual": 0.0684931506849315,
+      "n": 73
+    },
+    {
+      "predicted": 0.13034604177659706,
+      "actual": 0.1232876712328767,
+      "n": 73
+    },
+    {
+      "predicted": 0.42870587912206604,
+      "actual": 0.4189189189189189,
+      "n": 74
+    }
+  ],
+  "cv_comparison": [
+    {
+      "model": "Logistic Regression",
+      "pr_auc": 0.6260977904583338,
+      "pr_auc_std": 0.0543642120589147,
+      "roc_auc": 0.8327273087091415
+    },
+    {
+      "model": "XGBoost",
+      "pr_auc": 0.5729180720441941,
+      "pr_auc_std": 0.0526335564035498,
+      "roc_auc": 0.8002941067995837
+    },
+    {
+      "model": "Random Forest",
+      "pr_auc": 0.5347108986923049,
+      "pr_auc_std": 0.0426356395732553,
+      "roc_auc": 0.7961485007704618
+    }
+  ],
+  "cv_floor_pr_auc": 0.161565091958168,
+  "risk_bands_oof": [
+    {
+      "risk_level": "Low",
+      "employees": 777,
+      "actual_rate": 0.059202059202059204
+    },
+    {
+      "risk_level": "Medium",
+      "employees": 238,
+      "actual_rate": 0.1638655462184874
+    },
+    {
+      "risk_level": "High",
+      "employees": 161,
+      "actual_rate": 0.6521739130434783
+    }
+  ],
+  "excluded_columns": [
+    "Age",
+    "Gender",
+    "MaritalStatus"
+  ],
+  "notes": [
+    "The test set was split off before any exploration and used once, after the model and cutoff were chosen.",
+    "The cutoff was chosen on out-of-fold training predictions only, never on the test set.",
+    "Probabilities are calibrated: class weights alone made the raw scores over-confident.",
+    "Age, gender and marital status are not model inputs.",
+    "The test set has few leavers, so scores carry noticeable uncertainty."
+  ]
+}

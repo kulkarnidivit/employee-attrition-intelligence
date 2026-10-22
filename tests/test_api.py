@@ -116,3 +116,21 @@ def test_cors_allows_the_frontend_origin(client):
     )
     assert response.status_code == 200
     assert response.headers["access-control-allow-origin"] == "http://localhost:3000"
+
+
+def test_model_info_returns_the_model_card(client):
+    from src.config import MODEL_CARD_PATH
+
+    if not MODEL_CARD_PATH.exists():
+        pytest.skip("model card not built; run: python -m src.serving.make_model_card")
+    body = client.get("/model/info").json()
+    assert {"model", "test", "test_calibration", "cv_comparison", "risk_bands_oof"} <= set(body)
+
+
+def test_model_info_returns_the_model_card(client):
+    from src.config import MODEL_CARD_PATH
+
+    if not MODEL_CARD_PATH.exists():
+        pytest.skip("model card not built; run: python -m src.serving.make_model_card")
+    body = client.get("/model/info").json()
+    assert {"model", "test", "test_calibration", "cv_comparison", "risk_bands_oof"} <= set(body)

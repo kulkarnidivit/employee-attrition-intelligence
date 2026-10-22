@@ -50,3 +50,6 @@ TEST_RESULTS_PATH = REPORTS_DIR / "test_results.json"
 
 # Risk bands on CALIBRATED probabilities. Business rules, not scientific truths: change freely.
 RISK_BANDS = {"medium": 0.15, "high": 0.35}
+
+# Results shown on the web app's Model performance page
+MODEL_CARD_PATH = MODELS_DIR / "model_card.json"
